@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
   <title>НОРБИТ · IT-интеграция</title>
   <style>
-    /* ===== СБРОС & БАЗА ===== */
+    /* ===== СБРОС & БАЗА (тёмная тема) ===== */
     * {
       margin: 0;
       padding: 0;
@@ -14,8 +14,8 @@
     }
 
     body {
-      background: #f4f4f3; /* светлый фон */
-      color: #272726; /* тёмный текст */
+      background: #131313; /* глубокий тёмный фон */
+      color: #d6d6d2; /* светлый текст для контраста */
       line-height: 1.5;
     }
 
@@ -30,7 +30,7 @@
       display: flex;
       align-items: center;
       padding: 20px 0 12px;
-      border-bottom: 1px solid #d6d6d2;
+      border-bottom: 1px solid #272726;
       margin-bottom: 20px;
     }
 
@@ -41,18 +41,19 @@
     }
 
     .logo-svg .cls-1 {
-      fill: #272726; /* тёмный цвет для лого */
+      fill: #d6d6d2; /* светлый логотип на тёмном фоне */
     }
 
     .header-tagline {
       margin-left: 24px;
       font-size: 14px;
-      color: #4e4e4c;
-      background: #ececeb;
+      color: #9c9c99;
+      background: #272726;
       padding: 6px 20px;
       border-radius: 40px;
       letter-spacing: 0.3px;
       white-space: nowrap;
+      border: 1px solid #3a3a39;
     }
 
     @media (max-width: 600px) {
@@ -75,12 +76,11 @@
       display: flex;
       flex-wrap: wrap;
       gap: 20px 40px;
-      background: #ffffff;
+      background: #272726;
       border-radius: 24px;
       padding: 24px 32px;
       margin: 12px 0 32px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-      border: 1px solid #e5e5e2;
+      border: 1px solid #3a3a39;
     }
 
     .stat-item {
@@ -91,26 +91,26 @@
     .stat-number {
       font-size: 32px;
       font-weight: 700;
-      color: #131313;
+      color: #d6d6d2;
       line-height: 1.1;
     }
 
     .stat-label {
       font-size: 14px;
-      color: #4e4e4c;
+      color: #9c9c99;
       margin-top: 2px;
     }
 
     .stat-badge {
-      background: #f0f0ef;
+      background: #131313;
       border-radius: 30px;
       padding: 2px 18px;
       font-size: 13px;
-      color: #3a3a39;
+      color: #d6d6d2;
       display: inline-block;
       margin-top: 6px;
       width: fit-content;
-      border: 1px solid #d6d6d2;
+      border: 1px solid #3a3a39;
     }
 
     /* ===== КОМПЕТЕНЦИИ ===== */
@@ -122,38 +122,38 @@
     }
 
     .comp-card {
-      background: #ffffff;
+      background: #272726;
       border-radius: 20px;
       padding: 22px 20px;
-      border: 1px solid #e1e1de;
+      border: 1px solid #3a3a39;
       transition: 0.15s;
     }
 
     .comp-card h3 {
       font-size: 18px;
       font-weight: 600;
-      color: #131313;
+      color: #d6d6d2;
       margin-bottom: 6px;
     }
 
     .comp-card p {
       font-size: 15px;
-      color: #4e4e4c;
+      color: #9c9c99;
     }
 
     /* ===== ВИДЖЕТ ===== */
     .widget-section {
-      background: #ffffff;
+      background: #272726;
       border-radius: 28px;
       padding: 16px 20px 20px;
       margin: 36px 0 28px;
-      border: 1px solid #dadad6;
+      border: 1px solid #3a3a39;
     }
 
     .widget-section .widget-label {
       font-size: 13px;
       font-weight: 500;
-      color: #4e4e4c;
+      color: #d6d6d2;
       letter-spacing: 0.3px;
       margin-bottom: 10px;
       display: flex;
@@ -168,34 +168,34 @@
 
     /* ===== О КОМПАНИИ ===== */
     .about-text {
-      background: #ffffff;
+      background: #272726;
       border-radius: 24px;
       padding: 28px 30px;
       margin: 28px 0 30px;
-      border: 1px solid #e1e1de;
+      border: 1px solid #3a3a39;
     }
 
     .about-text h2 {
       font-size: 24px;
       font-weight: 600;
-      color: #131313;
+      color: #d6d6d2;
       margin-bottom: 16px;
     }
 
     .about-text p {
       font-size: 16px;
-      color: #3a3a39;
+      color: #afafac;
       margin-bottom: 14px;
     }
 
     .about-text .contact-phone {
-      background: #f0f0ef;
+      background: #131313;
       padding: 8px 20px;
       border-radius: 40px;
       display: inline-block;
       font-weight: 500;
-      color: #131313;
-      border: 1px solid #d6d6d2;
+      color: #d6d6d2;
+      border: 1px solid #3a3a39;
     }
 
     /* ===== НОВОСТИ / ДАТЫ ===== */
@@ -203,36 +203,36 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px 24px;
-      background: #f8f8f7;
+      background: #272726;
       border-radius: 60px;
       padding: 10px 24px;
       margin: 20px 0 28px;
       align-items: center;
-      border: 1px solid #e5e5e2;
+      border: 1px solid #3a3a39;
     }
 
     .news-dates .label {
       font-weight: 500;
-      color: #3a3a39;
+      color: #d6d6d2;
       font-size: 14px;
     }
 
     .news-dates .date-item {
-      background: #ffffff;
+      background: #131313;
       padding: 4px 18px;
       border-radius: 30px;
       font-size: 14px;
-      color: #272726;
-      border: 1px solid #d6d6d2;
+      color: #d6d6d2;
+      border: 1px solid #3a3a39;
     }
 
     /* ===== ФОРМЫ-ЗАГЛУШКИ ===== */
     .form-block {
-      background: #ffffff;
+      background: #272726;
       border-radius: 24px;
       padding: 26px 28px 24px;
       margin: 28px 0 20px;
-      border: 1px solid #dadad6;
+      border: 1px solid #3a3a39;
     }
 
     .form-row {
@@ -245,24 +245,24 @@
     .form-row h4 {
       font-size: 18px;
       font-weight: 600;
-      color: #131313;
+      color: #d6d6d2;
       flex: 1 1 180px;
     }
 
     .fake-input {
-      background: #f8f8f7;
+      background: #131313;
       border-radius: 60px;
       padding: 12px 24px;
-      color: #3a3a39;
+      color: #afafac;
       font-size: 15px;
-      border: 1px solid #d6d6d2;
+      border: 1px solid #3a3a39;
       min-width: 160px;
       flex: 1 1 160px;
     }
 
     .fake-btn {
-      background: #8c8c94;
-      color: #ffffff;
+      background: #3a3a39;
+      color: #d6d6d2;
       border: none;
       border-radius: 60px;
       padding: 12px 32px;
@@ -277,53 +277,53 @@
     }
 
     .fake-btn-light {
-      background: #e5e5e2;
-      color: #3a3a39;
+      background: #4e4e4c;
+      color: #d6d6d2;
       opacity: 0.7;
     }
 
     .contact-links {
       margin: 14px 0 4px;
       font-size: 15px;
-      color: #3a3a39;
+      color: #afafac;
       display: flex;
       flex-wrap: wrap;
       gap: 8px 20px;
     }
 
     .contact-links span {
-      background: #f0f0ef;
+      background: #131313;
       padding: 4px 16px;
       border-radius: 40px;
       font-weight: 500;
-      color: #131313;
-      border: 1px solid #d6d6d2;
+      color: #d6d6d2;
+      border: 1px solid #3a3a39;
     }
 
     /* ===== COOKIE ===== */
     .footer-cookie {
-      background: #ececeb;
+      background: #272726;
       border-radius: 40px;
       padding: 14px 26px;
       margin: 36px 0 18px;
       font-size: 14px;
-      color: #272726;
+      color: #d6d6d2;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      border: 1px solid #d6d6d2;
+      border: 1px solid #3a3a39;
     }
 
     .cookie-actions span {
-      background: #ffffff;
+      background: #131313;
       padding: 6px 20px;
       border-radius: 40px;
       margin-left: 10px;
       font-weight: 500;
-      color: #131313;
-      border: 1px solid #c3c3bf;
+      color: #d6d6d2;
+      border: 1px solid #3a3a39;
     }
 
     /* ===== ФУТЕР ===== */
@@ -333,14 +333,14 @@
       justify-content: space-between;
       padding: 18px 0 6px;
       font-size: 14px;
-      color: #4e4e4c;
-      border-top: 1px solid #dadad6;
+      color: #9c9c99;
+      border-top: 1px solid #272726;
       margin-top: 16px;
     }
 
     .fake-link {
       cursor: default;
-      color: #61615f;
+      color: #9c9c99;
       font-weight: 500;
       background: transparent;
       border: none;
@@ -396,11 +396,10 @@
 
   <!-- ===== ШАПКА С ЛОГОТИПОМ (SVG) ===== -->
   <div class="logo-wrapper">
-    <!-- Ваш SVG-логотип, адаптированный под цветовую схему -->
     <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1425.49 393" fill="none">
       <defs>
         <style>
-          .cls-1 { fill: #272726; }  <!-- тёмный цвет -->
+          .cls-1 { fill: #d6d6d2; }  <!-- светлый логотип -->
         </style>
       </defs>
       <g>
@@ -450,7 +449,7 @@
     </div>
     <div class="stat-item">
       <span class="stat-badge">ТОП-1 поставщик CRM (TAdviser 2022)</span>
-      <span class="stat-badge" style="background:#ececeb;">ТОП-2 интегратор CRM</span>
+      <span class="stat-badge" style="background:#272726;">ТОП-2 интегратор CRM</span>
     </div>
   </div>
 
@@ -474,7 +473,7 @@
     </script>
     <script src="https://bpmsoft-oc-widget1.cloudbpm.ru/3.2/widget.js" async></script>
     <script src="https://bpmsoft-oc-widget1.cloudbpm.ru/3.2/chunk-vendors.js" async></script>
-    <div style="font-size:13px; color:#61615f; margin-top:12px; border-top:1px solid #e1e1de; padding-top:12px;">
+    <div style="font-size:13px; color:#757573; margin-top:12px; border-top:1px solid #3a3a39; padding-top:12px;">
       ⚡ Виджет онлайн-чата (активен, остальной контент — демо-заглушка)
     </div>
   </div>
@@ -493,7 +492,7 @@
     <span class="date-item">29 / 06 / 2026</span>
     <span class="date-item">20 / 05 / 2026</span>
     <span class="date-item">28 / 04 / 2026</span>
-    <span style="margin-left:auto; background:#ffffff; padding:4px 18px; border-radius:30px; border:1px solid #d6d6d2;">Подписка на блог</span>
+    <span style="margin-left:auto; background:#131313; padding:4px 18px; border-radius:30px; border:1px solid #3a3a39; color:#d6d6d2;">Подписка на блог</span>
   </div>
 
   <!-- ===== ФОРМА: БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ ===== -->
@@ -511,23 +510,23 @@
   </div>
 
   <!-- ===== ФОРМА: СКАЧАТЬ ИССЛЕДОВАНИЕ ===== -->
-  <div class="form-block" style="background:#f8f8f7;">
+  <div class="form-block" style="background:#272726;">
     <div class="form-row">
       <h4>📄 Скачать исследование</h4>
       <span class="fake-input">Ваш e-mail</span>
-      <span class="fake-btn disabled-btn" style="background:#8c8c94;">Скачать</span>
+      <span class="fake-btn disabled-btn" style="background:#3a3a39;">Скачать</span>
     </div>
-    <div style="margin-top:12px; font-size:14px; color:#4e4e4c;">
-      или свяжитесь с экспертами: <span style="background:#ececeb; padding:2px 18px; border-radius:30px; border:1px solid #d6d6d2;">+7 495 787-29-92</span>
+    <div style="margin-top:12px; font-size:14px; color:#9c9c99;">
+      или свяжитесь с экспертами: <span style="background:#131313; padding:2px 18px; border-radius:30px; border:1px solid #3a3a39; color:#d6d6d2;">+7 495 787-29-92</span>
     </div>
   </div>
 
   <!-- ===== ФОРМА: ОТПРАВИТЬ РЕЗЮМЕ ===== -->
-  <div class="form-block" style="background:#f4f4f3;">
+  <div class="form-block" style="background:#272726;">
     <div class="form-row">
       <h4>🧑‍💼 Отправить резюме</h4>
       <span class="fake-input">Прикрепить файл</span>
-      <span class="fake-btn disabled-btn" style="background:#8c8c94;">Отправить</span>
+      <span class="fake-btn disabled-btn" style="background:#3a3a39;">Отправить</span>
     </div>
     <div class="contact-links">
       <span>📞 +7 495 787-29-92</span>
@@ -536,10 +535,10 @@
   </div>
 
   <!-- ===== СПАСИБО (ЗАГЛУШКА) ===== -->
-  <div style="display:flex; flex-wrap:wrap; gap:10px 24px; background:#ececeb; border-radius:40px; padding:10px 24px; margin:20px 0; border:1px solid #d6d6d2;">
-    <span>✅ Спасибо! Ваша заявка принята</span>
-    <span>✅ Спасибо! Вы подписаны</span>
-    <span>✅ Резюме отправлено</span>
+  <div style="display:flex; flex-wrap:wrap; gap:10px 24px; background:#272726; border-radius:40px; padding:10px 24px; margin:20px 0; border:1px solid #3a3a39;">
+    <span style="color:#d6d6d2;">✅ Спасибо! Ваша заявка принята</span>
+    <span style="color:#d6d6d2;">✅ Спасибо! Вы подписаны</span>
+    <span style="color:#d6d6d2;">✅ Резюме отправлено</span>
   </div>
 
   <!-- ===== COOKIE ===== -->
@@ -547,7 +546,7 @@
     <span>🍪 Нажмите «Принимаю», если соглашаетесь с условиями обработки cookie и ПД. <br> Подробности в Политике обработки ПД.</span>
     <div class="cookie-actions">
       <span>Принимаю</span>
-      <span style="background:#e5e5e2;">Настроить</span>
+      <span style="background:#272726;">Настроить</span>
     </div>
   </div>
 
@@ -561,7 +560,7 @@
   </div>
 
   <!-- ===== ПОДПИСЬ ===== -->
-  <div style="text-align:center; font-size:12px; color:#757573; margin-top:24px; border-top:1px solid #e1e1de; padding-top:16px;">
+  <div style="text-align:center; font-size:12px; color:#61615f; margin-top:24px; border-top:1px solid #272726; padding-top:16px;">
     ⚡ Страница-заглушка · ссылки неактивны · адаптивная вёрстка
   </div>
 
