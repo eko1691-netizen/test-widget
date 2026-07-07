@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
   <title>НОРБИТ · IT-интеграция</title>
-  <!-- Базовая стилизация + адаптив (заглушка) -->
   <style>
+    /* ===== СБРОС & БАЗА ===== */
     * {
       margin: 0;
       padding: 0;
@@ -14,292 +14,364 @@
     }
 
     body {
-      background: #f5f7fb;
-      color: #1e2a3a;
+      background: #f4f4f3; /* светлый фон */
+      color: #272726; /* тёмный текст */
       line-height: 1.5;
     }
 
     .page {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 20px 40px;
+      padding: 0 24px 40px;
     }
 
-    /* хедер */
-    .header {
-      padding: 24px 0 16px;
+    /* ===== ЛОГОТИП (SVG) ===== */
+    .logo-wrapper {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #e6edf5;
+      padding: 20px 0 12px;
+      border-bottom: 1px solid #d6d6d2;
+      margin-bottom: 20px;
     }
 
-    .logo {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #0b2b4a;
+    .logo-svg {
+      width: 200px;
+      height: auto;
+      display: block;
     }
-    .logo span {
-      color: #0066b3;
+
+    .logo-svg .cls-1 {
+      fill: #272726; /* тёмный цвет для лого */
     }
 
     .header-tagline {
+      margin-left: 24px;
       font-size: 14px;
-      color: #4a5b6e;
-      background: #eaf0f8;
-      padding: 6px 18px;
+      color: #4e4e4c;
+      background: #ececeb;
+      padding: 6px 20px;
       border-radius: 40px;
-      display: inline-block;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
     }
 
-    /* стат. блок */
+    @media (max-width: 600px) {
+      .logo-wrapper {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo-svg {
+        width: 150px;
+      }
+      .header-tagline {
+        margin-left: 0;
+        white-space: normal;
+        font-size: 13px;
+      }
+    }
+
+    /* ===== СТАТИСТИКА ===== */
     .stats {
       display: flex;
       flex-wrap: wrap;
-      gap: 30px 50px;
-      background: white;
+      gap: 20px 40px;
+      background: #ffffff;
       border-radius: 24px;
-      padding: 28px 32px;
-      margin: 24px 0 32px;
-      box-shadow: 0 4px 12px rgba(0, 20, 40, 0.04);
+      padding: 24px 32px;
+      margin: 12px 0 32px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e5e5e2;
     }
+
     .stat-item {
       display: flex;
       flex-direction: column;
     }
+
     .stat-number {
       font-size: 32px;
       font-weight: 700;
-      color: #003366;
+      color: #131313;
       line-height: 1.1;
     }
+
     .stat-label {
       font-size: 14px;
-      color: #3d556b;
-      margin-top: 4px;
+      color: #4e4e4c;
+      margin-top: 2px;
     }
+
     .stat-badge {
-      background: #eef3fa;
+      background: #f0f0ef;
       border-radius: 30px;
-      padding: 2px 16px;
+      padding: 2px 18px;
       font-size: 13px;
-      color: #1a4972;
+      color: #3a3a39;
       display: inline-block;
       margin-top: 6px;
       width: fit-content;
+      border: 1px solid #d6d6d2;
     }
 
-    /* карточки компетенций */
+    /* ===== КОМПЕТЕНЦИИ ===== */
     .competence-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin: 32px 0 40px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+      margin: 28px 0 32px;
     }
+
     .comp-card {
-      background: white;
+      background: #ffffff;
       border-radius: 20px;
-      padding: 24px 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-      border: 1px solid #eef2f7;
-      transition: 0.2s;
+      padding: 22px 20px;
+      border: 1px solid #e1e1de;
+      transition: 0.15s;
     }
+
     .comp-card h3 {
       font-size: 18px;
       font-weight: 600;
-      color: #00284d;
-      margin-bottom: 8px;
-    }
-    .comp-card p {
-      font-size: 15px;
-      color: #2d445c;
+      color: #131313;
+      margin-bottom: 6px;
     }
 
-    /* виджет-контейнер */
+    .comp-card p {
+      font-size: 15px;
+      color: #4e4e4c;
+    }
+
+    /* ===== ВИДЖЕТ ===== */
     .widget-section {
       background: #ffffff;
       border-radius: 28px;
       padding: 16px 20px 20px;
-      margin: 40px 0 32px;
-      border: 1px solid #e6edf5;
+      margin: 36px 0 28px;
+      border: 1px solid #dadad6;
     }
+
     .widget-section .widget-label {
       font-size: 13px;
       font-weight: 500;
-      color: #4f6a84;
+      color: #4e4e4c;
       letter-spacing: 0.3px;
       margin-bottom: 10px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
+
     .widget-section .widget-label::before {
       content: "💬";
       font-size: 18px;
     }
 
-    /* текст о компании */
+    /* ===== О КОМПАНИИ ===== */
     .about-text {
-      background: white;
+      background: #ffffff;
       border-radius: 24px;
       padding: 28px 30px;
       margin: 28px 0 30px;
-      border: 1px solid #eaf0f6;
+      border: 1px solid #e1e1de;
     }
+
     .about-text h2 {
       font-size: 24px;
       font-weight: 600;
-      color: #00284d;
-      margin-bottom: 18px;
-    }
-    .about-text p {
-      font-size: 16px;
-      color: #1e3349;
+      color: #131313;
       margin-bottom: 16px;
     }
 
-    /* даты / новости */
+    .about-text p {
+      font-size: 16px;
+      color: #3a3a39;
+      margin-bottom: 14px;
+    }
+
+    .about-text .contact-phone {
+      background: #f0f0ef;
+      padding: 8px 20px;
+      border-radius: 40px;
+      display: inline-block;
+      font-weight: 500;
+      color: #131313;
+      border: 1px solid #d6d6d2;
+    }
+
+    /* ===== НОВОСТИ / ДАТЫ ===== */
     .news-dates {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px 28px;
-      background: #f0f5fd;
+      gap: 12px 24px;
+      background: #f8f8f7;
       border-radius: 60px;
-      padding: 12px 28px;
+      padding: 10px 24px;
       margin: 20px 0 28px;
       align-items: center;
+      border: 1px solid #e5e5e2;
     }
-    .news-dates span {
-      font-size: 15px;
+
+    .news-dates .label {
       font-weight: 500;
-      color: #003f6b;
+      color: #3a3a39;
+      font-size: 14px;
     }
+
     .news-dates .date-item {
-      background: white;
+      background: #ffffff;
       padding: 4px 18px;
       border-radius: 30px;
       font-size: 14px;
-      color: #1e3b57;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+      color: #272726;
+      border: 1px solid #d6d6d2;
     }
 
-    /* формы-заглушки */
+    /* ===== ФОРМЫ-ЗАГЛУШКИ ===== */
     .form-block {
-      background: white;
+      background: #ffffff;
       border-radius: 24px;
-      padding: 30px 30px 28px;
-      margin: 32px 0 24px;
-      border: 1px solid #e2ebf5;
+      padding: 26px 28px 24px;
+      margin: 28px 0 20px;
+      border: 1px solid #dadad6;
     }
+
     .form-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 16px 20px;
+      gap: 14px 20px;
     }
+
     .form-row h4 {
       font-size: 18px;
       font-weight: 600;
-      color: #00284d;
-      flex: 1 1 200px;
-    }
-    .fake-input {
-      background: #f2f6fc;
-      border-radius: 60px;
-      padding: 12px 24px;
-      color: #2c4a6a;
-      font-size: 15px;
-      border: 1px solid #dce6f0;
-      min-width: 180px;
+      color: #131313;
       flex: 1 1 180px;
     }
+
+    .fake-input {
+      background: #f8f8f7;
+      border-radius: 60px;
+      padding: 12px 24px;
+      color: #3a3a39;
+      font-size: 15px;
+      border: 1px solid #d6d6d2;
+      min-width: 160px;
+      flex: 1 1 160px;
+    }
+
     .fake-btn {
-      background: #003b6f;
-      color: white;
+      background: #8c8c94;
+      color: #ffffff;
       border: none;
       border-radius: 60px;
       padding: 12px 32px;
       font-size: 16px;
       font-weight: 500;
-      opacity: 0.7;
+      opacity: 0.6;
       cursor: default;
       pointer-events: none;
       user-select: none;
       flex: 0 1 auto;
+      letter-spacing: 0.3px;
     }
+
     .fake-btn-light {
-      background: #e7eef8;
-      color: #1f4468;
-      opacity: 0.8;
+      background: #e5e5e2;
+      color: #3a3a39;
+      opacity: 0.7;
     }
 
     .contact-links {
-      margin: 16px 0 8px;
+      margin: 14px 0 4px;
       font-size: 15px;
-      color: #1f3d5c;
+      color: #3a3a39;
       display: flex;
       flex-wrap: wrap;
       gap: 8px 20px;
     }
+
     .contact-links span {
-      background: #eef4fc;
-      padding: 4px 14px;
+      background: #f0f0ef;
+      padding: 4px 16px;
       border-radius: 40px;
       font-weight: 500;
-      color: #003d70;
+      color: #131313;
+      border: 1px solid #d6d6d2;
     }
 
-    /* футер / cookie */
+    /* ===== COOKIE ===== */
     .footer-cookie {
-      background: #e1eaf3;
+      background: #ececeb;
       border-radius: 40px;
-      padding: 16px 28px;
-      margin: 40px 0 20px;
+      padding: 14px 26px;
+      margin: 36px 0 18px;
       font-size: 14px;
-      color: #1a3550;
+      color: #272726;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      border: 1px solid #d6d6d2;
     }
+
     .cookie-actions span {
-      background: #ffffffb3;
-      padding: 6px 18px;
+      background: #ffffff;
+      padding: 6px 20px;
       border-radius: 40px;
       margin-left: 10px;
       font-weight: 500;
-      color: #003367;
+      color: #131313;
+      border: 1px solid #c3c3bf;
     }
 
+    /* ===== ФУТЕР ===== */
     .footer-bottom {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      padding: 20px 0 8px;
+      padding: 18px 0 6px;
       font-size: 14px;
-      color: #4a607a;
-      border-top: 1px solid #d8e2ed;
+      color: #4e4e4c;
+      border-top: 1px solid #dadad6;
       margin-top: 16px;
     }
 
-    /* адаптив */
+    .fake-link {
+      cursor: default;
+      color: #61615f;
+      font-weight: 500;
+      background: transparent;
+      border: none;
+      padding: 0;
+      font-size: inherit;
+      pointer-events: none;
+    }
+
+    .disabled-btn {
+      opacity: 0.55;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .no-link {
+      cursor: default;
+      text-decoration: none;
+      color: inherit;
+      pointer-events: none;
+    }
+
+    /* ===== АДАПТИВ ===== */
     @media (max-width: 700px) {
-      .header {
-        flex-direction: column;
-        align-items: start;
-        gap: 8px;
-      }
       .stats {
         flex-direction: column;
-        gap: 16px;
+        gap: 14px;
         padding: 20px;
       }
       .news-dates {
         border-radius: 30px;
-        padding: 14px 20px;
+        padding: 14px 18px;
       }
       .form-row {
         flex-direction: column;
@@ -312,49 +384,57 @@
         flex-direction: column;
         text-align: center;
       }
-    }
-
-    /* для ссылок-заглушек */
-    .no-link {
-      cursor: default;
-      text-decoration: none;
-      color: inherit;
-      pointer-events: none;
-    }
-    .no-link:hover {
-      text-decoration: none;
-    }
-    /* убираем кликабельность с псевдо-ссылок */
-    .fake-link {
-      cursor: default;
-      color: #004b8f;
-      font-weight: 500;
-      background: transparent;
-      border: none;
-      padding: 0;
-      font-size: inherit;
-    }
-    .fake-link:active, .fake-link:focus {
-      pointer-events: none;
-    }
-    /* кнопки отключены */
-    .disabled-btn {
-      opacity: 0.65;
-      pointer-events: none;
-      cursor: default;
+      .logo-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- шапка -->
-  <header class="header">
-    <div class="logo"><span>НОРБИТ</span></div>
-    <div class="header-tagline">Системная IT-интеграция · 25 лет</div>
-  </header>
+  <!-- ===== ШАПКА С ЛОГОТИПОМ (SVG) ===== -->
+  <div class="logo-wrapper">
+    <!-- Ваш SVG-логотип, адаптированный под цветовую схему -->
+    <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1425.49 393" fill="none">
+      <defs>
+        <style>
+          .cls-1 { fill: #272726; }  <!-- тёмный цвет -->
+        </style>
+      </defs>
+      <g>
+        <path class="cls-1" d="M1278.98,163.05v-24.68h146.51v24.68h-59.49v119.85h-27.53v-119.85h-59.49Z"/>
+        <path class="cls-1" d="M1154.39,138.37v107.07l87.91-107.07h27.54v144.52h-27.54v-107.07l-87.91,107.07h-27.53v-144.52h27.53Z"/>
+        <path class="cls-1" d="M1096.82,138.37v24.68h-102.88v33.05h60.36c17.18,0,30.4,3.67,39.66,11.01,9.4,7.2,14.1,17.55,14.1,31.06v2.64c0,13.37-4.7,23.72-14.1,31.06-9.4,7.34-22.62,11.02-39.66,11.02h-87.9v-144.52h130.42ZM1053.86,258.22c8.22,0,14.69-1.54,19.39-4.63,4.7-3.08,7.05-7.34,7.05-12.78v-2.64c0-5.43-2.35-9.69-7.05-12.78-4.7-3.09-11.17-4.63-19.39-4.63h-59.92v37.45h59.92Z"/>
+        <path class="cls-1" d="M895.84,138.37c16.6,0,29.67,4.04,39.21,12.12,9.69,7.93,14.54,18.8,14.54,32.6v2.42c0,13.81-4.85,24.75-14.54,32.83-9.55,7.93-22.62,11.9-39.21,11.9h-62.79v52.65h-27.54v-144.52h90.33ZM895.17,205.57c8.52,0,15.05-1.69,19.61-5.07,4.55-3.52,6.83-8.52,6.83-14.98v-2.42c0-6.46-2.28-11.38-6.83-14.76-4.55-3.53-11.09-5.29-19.61-5.29h-62.13v42.52h62.13Z"/>
+        <path class="cls-1" d="M702.82,285.54c-17.04,0-31.95-3.01-44.72-9.03-12.63-6.02-22.4-14.54-29.3-25.56-6.9-11.16-10.35-24.16-10.35-38.99v-2.42c0-14.83,3.45-27.83,10.35-38.99s16.74-19.75,29.52-25.78c12.78-6.02,27.61-9.03,44.5-9.03s31.65,3.01,44.28,9.03c12.78,6.02,22.62,14.61,29.52,25.78,6.9,11.16,10.35,24.16,10.35,38.99v2.42c0,14.83-3.45,27.83-10.35,38.99-6.9,11.02-16.67,19.53-29.3,25.56s-27.46,9.03-44.5,9.03ZM702.82,259.98c17.92,0,31.72-4.11,41.42-12.34,9.84-8.37,14.76-20.12,14.76-35.25v-3.08c0-15.13-4.92-26.88-14.76-35.25-9.69-8.52-23.5-12.78-41.42-12.78s-31.8,4.26-41.64,12.78c-9.84,8.37-14.76,20.12-14.76,35.25v3.08c0,15.13,4.92,26.88,14.76,35.25,9.84,8.22,23.72,12.34,41.64,12.34Z"/>
+        <path class="cls-1" d="M484.38,138.37v59.92h87.9v-59.92h27.54v144.52h-27.54v-59.92h-87.9v59.92h-27.54v-144.52h27.54Z"/>
+        <path class="cls-1" d="M300.62,131.36L249.72,7.22c-6.65-1.94-13.42-3.48-20.24-4.64l63.64,155.18,7.5-26.41Z"/>
+        <path class="cls-1" d="M312.42,89.68l-28.08-68.37c-7.26-3.82-14.74-7.15-22.43-9.97l43.03,104.85,7.49-26.51Z"/>
+        <path class="cls-1" d="M298.33,29.6l18.44,44.95,7.16-25.13c-7.98-7.29-16.54-13.93-25.6-19.83Z"/>
+        <path class="cls-1" d="M288.54,173.76L217.67,1.03c-.86-.11-1.69-.22-2.56-.29-5.39-.49-10.8-.72-16.25-.74l82.13,200.18,7.55-26.42Z"/>
+        <path class="cls-1" d="M170.28,1.95l98.72,240.6,7.49-26.39L187.92.24c-5.9.31-11.8.88-17.64,1.71Z"/>
+        <path class="cls-1" d="M264.41,258.58L159.83,3.72c-5.62,1.09-11.18,2.42-16.7,3.99l113.8,277.27,7.47-26.4Z"/>
+        <path class="cls-1" d="M393.05,203.19c-.15-8.09-.77-16.18-1.86-24.19l-39.79,140.01c26.48-32.85,41.15-73.64,41.66-115.82Z"/>
+        <path class="cls-1" d="M312.73,355.44c8.18-5.84,15.9-12.31,23.09-19.33l51.19-179.81c-2.43-9.89-5.56-19.6-9.35-29.04l-64.93,228.19Z"/>
+        <path class="cls-1" d="M278.86,374.92c7.1-3.22,14.02-6.86,20.69-10.89l71.51-251.5c-3.51-7.15-7.41-14.1-11.69-20.81l-80.51,283.2Z"/>
+        <path class="cls-1" d="M110.88,19.79c-7.15,3.36-14.1,7.12-20.83,11.28L20.22,276.68c3.44,7.36,7.27,14.54,11.51,21.48L110.88,19.79Z"/>
+        <path class="cls-1" d="M76.82,39.94c-8.24,6.01-16.02,12.63-23.25,19.83L4.8,231.13c2.23,10.35,5.24,20.52,8.95,30.43L76.82,39.94Z"/>
+        <path class="cls-1" d="M.03,189.75c.09,5.78.46,11.52,1.02,17.25L37.9,77.48C12.63,109.38-.75,149.07.03,189.75Z"/>
+        <path class="cls-1" d="M85.92,275.02l-7.52,26.39,7.52-26.39Z"/>
+        <path class="cls-1" d="M90.24,259.83l51.44,125.46c6.67,2,13.47,3.62,20.32,4.84l-64.29-156.68-7.47,26.37Z"/>
+        <path class="cls-1" d="M92.78,362.11l-18.67-45.52-7.12,25.02c8.01,7.55,16.64,14.4,25.79,20.5Z"/>
+        <path class="cls-1" d="M85.95,274.99l-7.5,26.4,28.39,69.19c7.29,3.98,14.85,7.46,22.62,10.41l-43.51-106.01Z"/>
+        <path class="cls-1" d="M102.29,217.38l71.54,174.39c1.37.15,2.73.36,4.1.48,4.93.43,9.86.68,14.77.76l-82.91-202.03-7.5,26.41Z"/>
+        <path class="cls-1" d="M221.51,391.34l-99.61-242.75-7.5,26.4,89.4,217.87c5.9-.23,11.82-.74,17.72-1.52Z"/>
+        <path class="cls-1" d="M126.44,132.54l105.5,257.15c5.65-.99,11.25-2.25,16.78-3.81L133.95,106.18l-7.5,26.36Z"/>
+      </g>
+    </svg>
+    <span class="header-tagline">Системная IT-интеграция · 25 лет</span>
+  </div>
 
-  <!-- статистика -->
+  <!-- ===== СТАТИСТИКА ===== -->
   <div class="stats">
     <div class="stat-item">
       <span class="stat-number">1200+</span>
@@ -370,11 +450,11 @@
     </div>
     <div class="stat-item">
       <span class="stat-badge">ТОП-1 поставщик CRM (TAdviser 2022)</span>
-      <span class="stat-badge" style="background:#dce8f5;">ТОП-2 интегратор CRM</span>
+      <span class="stat-badge" style="background:#ececeb;">ТОП-2 интегратор CRM</span>
     </div>
   </div>
 
-  <!-- компетенции (заглушка) -->
+  <!-- ===== КОМПЕТЕНЦИИ ===== -->
   <div class="competence-grid">
     <div class="comp-card"><h3>CRM · SRM</h3><p>Управление отношениями с клиентами и поставщиками</p></div>
     <div class="comp-card"><h3>HRM · ERP</h3><p>Автоматизация кадров и ресурсов предприятия</p></div>
@@ -382,43 +462,41 @@
     <div class="comp-card"><h3>Бюджетирование</h3><p>Финансовое планирование и управление данными</p></div>
   </div>
 
-  <!-- ВИДЖЕТ (встроенный) -->
+  <!-- ===== ВИДЖЕТ (ВСТРОЕН) ===== -->
   <div class="widget-section">
     <div class="widget-label">Чат-консультант</div>
-    <!-- сам виджет -->
     <link rel="stylesheet" href="https://bpmsoft-oc-widget1.cloudbpm.ru/3.2/widget.css">
     <div id="bpmsoftocc-chat"></div>
-    <script> 
-        window.bpmsoftoccconfig = {};
-        window.bpmsoftoccconfig.channelId = 'c5c309a2-15ed-4e1e-bbd3-5cb11feaef0d';
-        window.bpmsoftoccconfig.connectorUrl = 'https://bpmsoft-oc-connector1.cloudbpm.ru';
+    <script>
+      window.bpmsoftoccconfig = {};
+      window.bpmsoftoccconfig.channelId = 'c5c309a2-15ed-4e1e-bbd3-5cb11feaef0d';
+      window.bpmsoftoccconfig.connectorUrl = 'https://bpmsoft-oc-connector1.cloudbpm.ru';
     </script>
     <script src="https://bpmsoft-oc-widget1.cloudbpm.ru/3.2/widget.js" async></script>
     <script src="https://bpmsoft-oc-widget1.cloudbpm.ru/3.2/chunk-vendors.js" async></script>
-    <!-- пояснение для заглушки -->
-    <div style="font-size:13px; color:#4b6a88; margin-top:10px; border-top:1px dashed #d6e2f0; padding-top:12px;">
+    <div style="font-size:13px; color:#61615f; margin-top:12px; border-top:1px solid #e1e1de; padding-top:12px;">
       ⚡ Виджет онлайн-чата (активен, остальной контент — демо-заглушка)
     </div>
   </div>
 
-  <!-- текст о компании -->
+  <!-- ===== О КОМПАНИИ ===== -->
   <div class="about-text">
     <h2>Цифровая трансформация бизнеса</h2>
     <p><strong>НОРБИТ</strong> — крупнейший российский IT-интегратор. Более 1000 проектов для компаний России, Армении, Узбекистана. Работаем с зарубежными и российскими вендорами, разрабатываем собственное ПО.</p>
     <p>Автоматизация: CRM, SRM, HRM, ERP, BI, ML, бюджетирование, управление данными. Отрасли: финансы, энергетика, ритейл, логистика, госсектор. Поддерживаем импортозамещение и федеральные программы.</p>
-    <p style="margin-top:10px; background:#eaf2fb; padding:10px 16px; border-radius:40px; display:inline-block;">📞 +7 (495) 787-29-92 · info@norbit.ru</p>
+    <span class="contact-phone">📞 +7 (495) 787-29-92 · info@norbit.ru</span>
   </div>
 
-  <!-- даты (заглушка) -->
+  <!-- ===== НОВОСТИ / ДАТЫ ===== -->
   <div class="news-dates">
-    <span>📌 Актуальное</span>
+    <span class="label">📌 Актуальное</span>
     <span class="date-item">29 / 06 / 2026</span>
     <span class="date-item">20 / 05 / 2026</span>
     <span class="date-item">28 / 04 / 2026</span>
-    <span style="margin-left:auto; background:white; padding:4px 18px; border-radius:30px;">Подписка на блог</span>
+    <span style="margin-left:auto; background:#ffffff; padding:4px 18px; border-radius:30px; border:1px solid #d6d6d2;">Подписка на блог</span>
   </div>
 
-  <!-- форма "бесплатная консультация" (заглушка) -->
+  <!-- ===== ФОРМА: БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ ===== -->
   <div class="form-block">
     <div class="form-row">
       <h4>📋 Бесплатная консультация</h4>
@@ -432,24 +510,24 @@
     </div>
   </div>
 
-  <!-- форма "скачать исследование" -->
-  <div class="form-block" style="background:#f2f8ff;">
+  <!-- ===== ФОРМА: СКАЧАТЬ ИССЛЕДОВАНИЕ ===== -->
+  <div class="form-block" style="background:#f8f8f7;">
     <div class="form-row">
       <h4>📄 Скачать исследование</h4>
       <span class="fake-input">Ваш e-mail</span>
-      <span class="fake-btn disabled-btn" style="background:#1d4f7a;">Скачать</span>
+      <span class="fake-btn disabled-btn" style="background:#8c8c94;">Скачать</span>
     </div>
-    <div style="margin-top:12px; font-size:14px; color:#2b4d6e;">
-      или свяжитесь с экспертами: <span style="background:#dce8f5; padding:2px 16px; border-radius:30px;">+7 495 787-29-92</span>
+    <div style="margin-top:12px; font-size:14px; color:#4e4e4c;">
+      или свяжитесь с экспертами: <span style="background:#ececeb; padding:2px 18px; border-radius:30px; border:1px solid #d6d6d2;">+7 495 787-29-92</span>
     </div>
   </div>
 
-  <!-- форма "отправить резюме" -->
-  <div class="form-block" style="background:#ecf3fa;">
+  <!-- ===== ФОРМА: ОТПРАВИТЬ РЕЗЮМЕ ===== -->
+  <div class="form-block" style="background:#f4f4f3;">
     <div class="form-row">
       <h4>🧑‍💼 Отправить резюме</h4>
       <span class="fake-input">Прикрепить файл</span>
-      <span class="fake-btn disabled-btn" style="background:#1f4d78;">Отправить</span>
+      <span class="fake-btn disabled-btn" style="background:#8c8c94;">Отправить</span>
     </div>
     <div class="contact-links">
       <span>📞 +7 495 787-29-92</span>
@@ -457,38 +535,37 @@
     </div>
   </div>
 
-  <!-- спасибо (заглушка) -->
-  <div style="display:flex; flex-wrap:wrap; gap:12px 30px; background:#dce8f5; border-radius:40px; padding:12px 28px; margin:18px 0;">
+  <!-- ===== СПАСИБО (ЗАГЛУШКА) ===== -->
+  <div style="display:flex; flex-wrap:wrap; gap:10px 24px; background:#ececeb; border-radius:40px; padding:10px 24px; margin:20px 0; border:1px solid #d6d6d2;">
     <span>✅ Спасибо! Ваша заявка принята</span>
     <span>✅ Спасибо! Вы подписаны</span>
     <span>✅ Резюме отправлено</span>
   </div>
 
-  <!-- cookie / политика -->
+  <!-- ===== COOKIE ===== -->
   <div class="footer-cookie">
     <span>🍪 Нажмите «Принимаю», если соглашаетесь с условиями обработки cookie и ПД. <br> Подробности в Политике обработки ПД.</span>
     <div class="cookie-actions">
       <span>Принимаю</span>
-      <span style="background:#cbdae9;">Настроить</span>
+      <span style="background:#e5e5e2;">Настроить</span>
     </div>
   </div>
 
-  <!-- футер -->
+  <!-- ===== ФУТЕР ===== -->
   <div class="footer-bottom">
     <span>© НОРБИТ · Не упустите важное из мира технологий!</span>
-    <span style="display:flex; gap:12px;">
+    <span style="display:flex; gap:16px;">
       <span class="fake-link">Политика</span>
       <span class="fake-link">Партнёрам</span>
     </span>
   </div>
 
-  <!-- подпись: все ссылки деактивированы -->
-  <div style="text-align:center; font-size:12px; color:#6f87a0; margin-top:20px; border-top:1px solid #dce5ef; padding-top:16px;">
+  <!-- ===== ПОДПИСЬ ===== -->
+  <div style="text-align:center; font-size:12px; color:#757573; margin-top:24px; border-top:1px solid #e1e1de; padding-top:16px;">
     ⚡ Страница-заглушка · ссылки неактивны · адаптивная вёрстка
   </div>
 
 </div>
-<!-- конец .page -->
+<!-- end .page -->
 </body>
 </html>
-```
