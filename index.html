@@ -1,9 +1,496 @@
-<link rel="stylesheet" href="https://bpmsoft-oc-widget1.cloudbpm.ru/3.2/widget.css">
-<div id="bpmsoftocc-chat"></div>
-<script> 
-    window.bpmsoftoccconfig = {};
-    window.bpmsoftoccconfig.channelId = 'c5c309a2-15ed-4e1e-bbd3-5cb11feaef0d';
-    window.bpmsoftoccconfig.connectorUrl = 'https://bpmsoft-oc-connector1.cloudbpm.ru';
-</script>
-<script src="https://bpmsoft-oc-widget1.cloudbpm.ru/3.2/widget.js" async></script>
-<script src="https://bpmsoft-oc-widget1.cloudbpm.ru/3.2/chunk-vendors.js" async></script>
+Вот готовый HTML-код заглушки для сайта НОРБИТ. Он сохраняет ключевые элементы дизайна, адаптивен, а все ссылки заменены на неактивные `<span>` или кнопки с атрибутом `disabled`. Виджет онлайн-чата встроен в соответствии с вашими требованиями.
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>НОРБИТ · IT-интеграция</title>
+  <!-- Базовая стилизация + адаптив (заглушка) -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #1e2a3a;
+      line-height: 1.5;
+    }
+
+    .page {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+
+    /* хедер */
+    .header {
+      padding: 24px 0 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e6edf5;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0b2b4a;
+    }
+    .logo span {
+      color: #0066b3;
+    }
+
+    .header-tagline {
+      font-size: 14px;
+      color: #4a5b6e;
+      background: #eaf0f8;
+      padding: 6px 18px;
+      border-radius: 40px;
+      display: inline-block;
+    }
+
+    /* стат. блок */
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px 50px;
+      background: white;
+      border-radius: 24px;
+      padding: 28px 32px;
+      margin: 24px 0 32px;
+      box-shadow: 0 4px 12px rgba(0, 20, 40, 0.04);
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: #003366;
+      line-height: 1.1;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: #3d556b;
+      margin-top: 4px;
+    }
+    .stat-badge {
+      background: #eef3fa;
+      border-radius: 30px;
+      padding: 2px 16px;
+      font-size: 13px;
+      color: #1a4972;
+      display: inline-block;
+      margin-top: 6px;
+      width: fit-content;
+    }
+
+    /* карточки компетенций */
+    .competence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin: 32px 0 40px;
+    }
+    .comp-card {
+      background: white;
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      border: 1px solid #eef2f7;
+      transition: 0.2s;
+    }
+    .comp-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #00284d;
+      margin-bottom: 8px;
+    }
+    .comp-card p {
+      font-size: 15px;
+      color: #2d445c;
+    }
+
+    /* виджет-контейнер */
+    .widget-section {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 16px 20px 20px;
+      margin: 40px 0 32px;
+      border: 1px solid #e6edf5;
+    }
+    .widget-section .widget-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #4f6a84;
+      letter-spacing: 0.3px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .widget-section .widget-label::before {
+      content: "💬";
+      font-size: 18px;
+    }
+
+    /* текст о компании */
+    .about-text {
+      background: white;
+      border-radius: 24px;
+      padding: 28px 30px;
+      margin: 28px 0 30px;
+      border: 1px solid #eaf0f6;
+    }
+    .about-text h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #00284d;
+      margin-bottom: 18px;
+    }
+    .about-text p {
+      font-size: 16px;
+      color: #1e3349;
+      margin-bottom: 16px;
+    }
+
+    /* даты / новости */
+    .news-dates {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 28px;
+      background: #f0f5fd;
+      border-radius: 60px;
+      padding: 12px 28px;
+      margin: 20px 0 28px;
+      align-items: center;
+    }
+    .news-dates span {
+      font-size: 15px;
+      font-weight: 500;
+      color: #003f6b;
+    }
+    .news-dates .date-item {
+      background: white;
+      padding: 4px 18px;
+      border-radius: 30px;
+      font-size: 14px;
+      color: #1e3b57;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+
+    /* формы-заглушки */
+    .form-block {
+      background: white;
+      border-radius: 24px;
+      padding: 30px 30px 28px;
+      margin: 32px 0 24px;
+      border: 1px solid #e2ebf5;
+    }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px 20px;
+    }
+    .form-row h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #00284d;
+      flex: 1 1 200px;
+    }
+    .fake-input {
+      background: #f2f6fc;
+      border-radius: 60px;
+      padding: 12px 24px;
+      color: #2c4a6a;
+      font-size: 15px;
+      border: 1px solid #dce6f0;
+      min-width: 180px;
+      flex: 1 1 180px;
+    }
+    .fake-btn {
+      background: #003b6f;
+      color: white;
+      border: none;
+      border-radius: 60px;
+      padding: 12px 32px;
+      font-size: 16px;
+      font-weight: 500;
+      opacity: 0.7;
+      cursor: default;
+      pointer-events: none;
+      user-select: none;
+      flex: 0 1 auto;
+    }
+    .fake-btn-light {
+      background: #e7eef8;
+      color: #1f4468;
+      opacity: 0.8;
+    }
+
+    .contact-links {
+      margin: 16px 0 8px;
+      font-size: 15px;
+      color: #1f3d5c;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+    }
+    .contact-links span {
+      background: #eef4fc;
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #003d70;
+    }
+
+    /* футер / cookie */
+    .footer-cookie {
+      background: #e1eaf3;
+      border-radius: 40px;
+      padding: 16px 28px;
+      margin: 40px 0 20px;
+      font-size: 14px;
+      color: #1a3550;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .cookie-actions span {
+      background: #ffffffb3;
+      padding: 6px 18px;
+      border-radius: 40px;
+      margin-left: 10px;
+      font-weight: 500;
+      color: #003367;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 20px 0 8px;
+      font-size: 14px;
+      color: #4a607a;
+      border-top: 1px solid #d8e2ed;
+      margin-top: 16px;
+    }
+
+    /* адаптив */
+    @media (max-width: 700px) {
+      .header {
+        flex-direction: column;
+        align-items: start;
+        gap: 8px;
+      }
+      .stats {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px;
+      }
+      .news-dates {
+        border-radius: 30px;
+        padding: 14px 20px;
+      }
+      .form-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .fake-btn {
+        text-align: center;
+      }
+      .footer-cookie {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* для ссылок-заглушек */
+    .no-link {
+      cursor: default;
+      text-decoration: none;
+      color: inherit;
+      pointer-events: none;
+    }
+    .no-link:hover {
+      text-decoration: none;
+    }
+    /* убираем кликабельность с псевдо-ссылок */
+    .fake-link {
+      cursor: default;
+      color: #004b8f;
+      font-weight: 500;
+      background: transparent;
+      border: none;
+      padding: 0;
+      font-size: inherit;
+    }
+    .fake-link:active, .fake-link:focus {
+      pointer-events: none;
+    }
+    /* кнопки отключены */
+    .disabled-btn {
+      opacity: 0.65;
+      pointer-events: none;
+      cursor: default;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- шапка -->
+  <header class="header">
+    <div class="logo"><span>НОРБИТ</span></div>
+    <div class="header-tagline">Системная IT-интеграция · 25 лет</div>
+  </header>
+
+  <!-- статистика -->
+  <div class="stats">
+    <div class="stat-item">
+      <span class="stat-number">1200+</span>
+      <span class="stat-label">сотрудников</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">25 лет</span>
+      <span class="stat-label">опыта</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">1000+</span>
+      <span class="stat-label">проектов</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-badge">ТОП-1 поставщик CRM (TAdviser 2022)</span>
+      <span class="stat-badge" style="background:#dce8f5;">ТОП-2 интегратор CRM</span>
+    </div>
+  </div>
+
+  <!-- компетенции (заглушка) -->
+  <div class="competence-grid">
+    <div class="comp-card"><h3>CRM · SRM</h3><p>Управление отношениями с клиентами и поставщиками</p></div>
+    <div class="comp-card"><h3>HRM · ERP</h3><p>Автоматизация кадров и ресурсов предприятия</p></div>
+    <div class="comp-card"><h3>BI · ML</h3><p>Аналитика, машинное обучение, дашборды</p></div>
+    <div class="comp-card"><h3>Бюджетирование</h3><p>Финансовое планирование и управление данными</p></div>
+  </div>
+
+  <!-- ВИДЖЕТ (встроенный) -->
+  <div class="widget-section">
+    <div class="widget-label">Чат-консультант</div>
+    <!-- сам виджет -->
+    <link rel="stylesheet" href="https://bpmsoft-oc-widget1.cloudbpm.ru/3.2/widget.css">
+    <div id="bpmsoftocc-chat"></div>
+    <script> 
+        window.bpmsoftoccconfig = {};
+        window.bpmsoftoccconfig.channelId = 'c5c309a2-15ed-4e1e-bbd3-5cb11feaef0d';
+        window.bpmsoftoccconfig.connectorUrl = 'https://bpmsoft-oc-connector1.cloudbpm.ru';
+    </script>
+    <script src="https://bpmsoft-oc-widget1.cloudbpm.ru/3.2/widget.js" async></script>
+    <script src="https://bpmsoft-oc-widget1.cloudbpm.ru/3.2/chunk-vendors.js" async></script>
+    <!-- пояснение для заглушки -->
+    <div style="font-size:13px; color:#4b6a88; margin-top:10px; border-top:1px dashed #d6e2f0; padding-top:12px;">
+      ⚡ Виджет онлайн-чата (активен, остальной контент — демо-заглушка)
+    </div>
+  </div>
+
+  <!-- текст о компании -->
+  <div class="about-text">
+    <h2>Цифровая трансформация бизнеса</h2>
+    <p><strong>НОРБИТ</strong> — крупнейший российский IT-интегратор. Более 1000 проектов для компаний России, Армении, Узбекистана. Работаем с зарубежными и российскими вендорами, разрабатываем собственное ПО.</p>
+    <p>Автоматизация: CRM, SRM, HRM, ERP, BI, ML, бюджетирование, управление данными. Отрасли: финансы, энергетика, ритейл, логистика, госсектор. Поддерживаем импортозамещение и федеральные программы.</p>
+    <p style="margin-top:10px; background:#eaf2fb; padding:10px 16px; border-radius:40px; display:inline-block;">📞 +7 (495) 787-29-92 · info@norbit.ru</p>
+  </div>
+
+  <!-- даты (заглушка) -->
+  <div class="news-dates">
+    <span>📌 Актуальное</span>
+    <span class="date-item">29 / 06 / 2026</span>
+    <span class="date-item">20 / 05 / 2026</span>
+    <span class="date-item">28 / 04 / 2026</span>
+    <span style="margin-left:auto; background:white; padding:4px 18px; border-radius:30px;">Подписка на блог</span>
+  </div>
+
+  <!-- форма "бесплатная консультация" (заглушка) -->
+  <div class="form-block">
+    <div class="form-row">
+      <h4>📋 Бесплатная консультация</h4>
+      <span class="fake-input">Ваше имя или телефон</span>
+      <span class="fake-btn disabled-btn">Оставить заявку</span>
+    </div>
+    <div class="contact-links">
+      <span>✉ info@norbit.ru</span>
+      <span>📞 +7 495 787-29-92</span>
+      <span class="fake-link">(ссылка-заглушка)</span>
+    </div>
+  </div>
+
+  <!-- форма "скачать исследование" -->
+  <div class="form-block" style="background:#f2f8ff;">
+    <div class="form-row">
+      <h4>📄 Скачать исследование</h4>
+      <span class="fake-input">Ваш e-mail</span>
+      <span class="fake-btn disabled-btn" style="background:#1d4f7a;">Скачать</span>
+    </div>
+    <div style="margin-top:12px; font-size:14px; color:#2b4d6e;">
+      или свяжитесь с экспертами: <span style="background:#dce8f5; padding:2px 16px; border-radius:30px;">+7 495 787-29-92</span>
+    </div>
+  </div>
+
+  <!-- форма "отправить резюме" -->
+  <div class="form-block" style="background:#ecf3fa;">
+    <div class="form-row">
+      <h4>🧑‍💼 Отправить резюме</h4>
+      <span class="fake-input">Прикрепить файл</span>
+      <span class="fake-btn disabled-btn" style="background:#1f4d78;">Отправить</span>
+    </div>
+    <div class="contact-links">
+      <span>📞 +7 495 787-29-92</span>
+      <span>✉ info@norbit.ru</span>
+    </div>
+  </div>
+
+  <!-- спасибо (заглушка) -->
+  <div style="display:flex; flex-wrap:wrap; gap:12px 30px; background:#dce8f5; border-radius:40px; padding:12px 28px; margin:18px 0;">
+    <span>✅ Спасибо! Ваша заявка принята</span>
+    <span>✅ Спасибо! Вы подписаны</span>
+    <span>✅ Резюме отправлено</span>
+  </div>
+
+  <!-- cookie / политика -->
+  <div class="footer-cookie">
+    <span>🍪 Нажмите «Принимаю», если соглашаетесь с условиями обработки cookie и ПД. <br> Подробности в Политике обработки ПД.</span>
+    <div class="cookie-actions">
+      <span>Принимаю</span>
+      <span style="background:#cbdae9;">Настроить</span>
+    </div>
+  </div>
+
+  <!-- футер -->
+  <div class="footer-bottom">
+    <span>© НОРБИТ · Не упустите важное из мира технологий!</span>
+    <span style="display:flex; gap:12px;">
+      <span class="fake-link">Политика</span>
+      <span class="fake-link">Партнёрам</span>
+    </span>
+  </div>
+
+  <!-- подпись: все ссылки деактивированы -->
+  <div style="text-align:center; font-size:12px; color:#6f87a0; margin-top:20px; border-top:1px solid #dce5ef; padding-top:16px;">
+    ⚡ Страница-заглушка · ссылки неактивны · адаптивная вёрстка
+  </div>
+
+</div>
+<!-- конец .page -->
+</body>
+</html>
+```
