@@ -5,6 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
   <title>Главная — OMG</title>
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,300,100&amp;subset=latin" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://files.cloudbpm.ru/Delivery/js/track-cookies.js"></script>
+  <script src="https://files.cloudbpm.ru/Delivery/js/create-object.js"></script>
+  <script>
+    var config = {
+        fields: {
+            "Name": "#form-name",
+            "Email": "#form-email",
+            "MobilePhone": "#form-phone",
+            "Company": "#form-company",
+            "FullJobTitle": "#form-position",
+            "Industry": "#form-industry",
+            "City": "#form-city",
+            "Country": "#form-country"
+        },
+        contactFields: {
+            "FullName": "#form-name",
+            "Phone": "#form-phone",
+            "Email": "#form-email"
+        },
+        customFields: {},
+        landingId: "e2eb5569-a54f-4296-9219-b358e574c685",
+        serviceUrl: "https://demo-omg.cloudbpm.ru/ServiceModel/GeneratedObjectWebFormService.svc/SaveWebFormObjectData",
+        redirectUrl: "bpmsoft.ru"
+    };
+    function createObject() {
+        landing.createObjectFromLanding(config);
+    }
+    function initLanding() {
+        landing.initLanding(config);
+    }
+    jQuery(document).ready(initLanding);
+  </script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -160,7 +193,7 @@
       <li><a href="#projects">Проекты</a></li>
       <li><a href="#smi">СМИ о нас</a></li>
       <li><a href="#clients">Клиенты</a></li>
-      <li><a href="#contact">Контакты</a></li>
+      <li><a href="#form">Контакты</a></li>
     </ul>
   </nav>
   <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Меню">
@@ -325,8 +358,8 @@
   </div>
 </section>
 
-<!-- КОНТАКТЫ -->
-<section class="section section--dark" id="contact">
+<!-- КОНТАКТЫ И ФОРМА -->
+<section class="section section--dark" id="form">
   <div class="page-body" style="padding-bottom: 96px;">
     <div class="row">
       <div class="col-left"><div class="section-label" style="color: #bdbdbd;">Контакты</div></div>
@@ -336,8 +369,17 @@
           <div><a href="tel:+74959693977">+7 (495) 969-39-77</a></div>
           <div><a href="mailto:info@omgconf.ru">info@omgconf.ru</a></div>
         </div>
-        <div class="contact-divider"></div>
-        <div class="copyright">2026, OMG Agency</div>
+
+        <div class="spacer-48"></div>
+
+        <form class="form-inline" name="landingForm" onSubmit="createObject(); return false">
+          <input type="text" id="form-name" class="form-input" placeholder="Ваше имя" required>
+          <input type="email" id="form-email" class="form-input" placeholder="E-mail" required>
+          <input type="tel" id="form-phone" class="form-input" placeholder="Телефон">
+          <input type="text" id="form-company" class="form-input" placeholder="Компания">
+          <input type="text" id="form-position" class="form-input" placeholder="Должность">
+          <button type="submit" class="bigbutton">Отправить заявку</button>
+        </form>
       </div>
     </div>
   </div>
