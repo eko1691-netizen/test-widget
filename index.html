@@ -32,6 +32,9 @@
     };
     function createObject() {
         landing.createObjectFromLanding(config);
+        setTimeout(function() {
+            window.location.href = "https://omgconf.ru/";
+        }, 1000);
     }
     function initLanding() {
         landing.initLanding(config);
@@ -166,7 +169,7 @@
     .form-inline { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
     .form-input { flex: 1 1 220px; padding: 12px 16px; font-family: "Raleway", "Cera", sans-serif; font-size: 16px; border: none; border-bottom: 3px solid #e0e0e0; background: #fff; outline: none; border-radius: 0; transition: border-color 0.3s; color: #111; }
     .form-input:focus { border-bottom-color: #000; }
-    .section--dark .form-input { color: #fff; border-bottom-color: #444; }
+    .section--dark .form-input { color: #111; border-bottom-color: #444; }
     .section--dark .form-input:focus { border-bottom-color: #fff; }
     .section--dark .form-input::placeholder { color: #888; }
     @media (max-width: 600px) { .form-inline { flex-direction: column; align-items: stretch; } }
