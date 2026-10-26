@@ -3,35 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-  <title>Лемана ПРО — Заказать звонок</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,300,100&amp;subset=latin" rel="stylesheet">
+  <title>Лемана ПРО — Регистрация B2B-клиента</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700,300&amp;subset=latin" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="https://files.cloudbpm.ru/Delivery/js/track-cookies.js"></script>
   <script src="https://files.cloudbpm.ru/Delivery/js/create-object.js"></script>
   <script>
     var config = {
         fields: {
-            "Name": "#form-name",
+            "Name": "#form-fio",
             "Email": "#form-email",
             "MobilePhone": "#form-phone",
-            "Company": "#form-company",
+            "Company": "#form-company-name",
             "FullJobTitle": "#form-position",
-            "Industry": "#form-industry",
-            "City": "#form-city",
-            "Country": "#form-country",
-            "Commentary": "#form-commentary"
+            "Commentary": "#form-inn"
         },
         contactFields: {
-            "FullName": "#form-name",
+            "FullName": "#form-fio",
             "Phone": "#form-phone",
             "Email": "#form-email"
         },
         customFields: {},
         landingId: "e2eb5569-a54f-4296-9219-b358e574c685",
-        serviceUrl: "https://demo-lemglobal.cloudbpm.ru/ServiceModel/GeneratedObjectWebFormService.svc/SaveWebFormObjectData",
+        serviceUrl: "https://demo-sc-lem.cloudbpm.ru/ServiceModel/GeneratedObjectWebFormService.svc/SaveWebFormObjectData",
         redirectUrl: "bpmsoft.ru"
     };
     function createObject() {
+        // Add selected products to the commentary field
+        var selectedProducts = [];
+        document.querySelectorAll('.cart-item input[name^="product-"]:checked').forEach(function(checkbox) {
+            selectedProducts.push(checkbox.value);
+        });
+        if (selectedProducts.length > 0) {
+            document.getElementById('form-commentary').value = "Выбранные продукты: " + selectedProducts.join(', ');
+        }
         landing.createObjectFromLanding(config);
         setTimeout(function() {
             window.location.href = "https://lemanapro.ru";
@@ -47,280 +52,470 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: "Raleway", "Cera", sans-serif;
-      font-weight: 400; font-size: 16px; line-height: 1.6;
-      color: #111; background: #fff;
+      font-weight: 400; font-size: 15px; line-height: 1.6;
+      color: #1a1a1a; background: #fff;
     }
-    a { color: inherit; text-decoration: none; transition: all 0.4s ease; }
-    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
+    img, svg { max-width: 100%; display: block; }
 
     /* HEADER */
     .main-header {
-      background: #fff; padding: 20px 55px;
+      background: #fff;
+      padding: 18px 55px;
       display: flex; align-items: center; justify-content: space-between;
       position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid #e8e8e8;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
-    @media (max-width: 1000px) { .main-header { padding: 15px 20px; } }
-    .logo-text { font-size: 28px; font-weight: 700; color: #000; letter-spacing: 2px; text-transform: uppercase; }
-    .nav-menu { display: flex; gap: 30px; list-style: none; }
-    .nav-menu a { color: #666; font-weight: 500; font-size: 15px; }
-    .nav-menu a:hover { color: #000; }
-
-    /* SECTIONS */
-    .section { padding: 140px 0 100px 0; }
-    @media (max-width: 1000px) { .section { padding: 80px 0; } }
-    .section--white { background: #fff; }
-    .section--gray { background: #f5f5f5; }
+    @media (max-width: 1000px) { .main-header { padding: 14px 20px; } }
+    .logo-wrapper { display: flex; align-items: center; gap: 14px; }
+    .logo-wrapper svg { height: 42px; width: auto; }
+    .logo-text { font-size: 26px; font-weight: 700; color: #1a1a1a; letter-spacing: 1px; text-transform: uppercase; }
+    .header-contact { text-align: right; }
+    .header-phone { font-size: 20px; font-weight: 700; color: #1a1a1a; letter-spacing: 0.5px; }
+    .header-phone a { color: inherit; }
+    .header-phone a:hover { color: #ffbf2f; }
+    .header-subtext { font-size: 12px; color: #888; margin-top: 2px; }
 
     /* HERO */
     .hero {
-      min-height: 80vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding-top: 180px; background: #fff;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+      color: #fff;
+      padding: 160px 55px 120px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
+    @media (max-width: 1000px) { .hero { padding: 120px 20px 80px; } }
     .hero h1 {
-      font-family: "Raleway", "Cera", sans-serif; font-weight: 700;
-      font-size: 48px; line-height: 1.3; color: #000; max-width: 800px;
+      font-family: "Raleway", sans-serif;
+      font-weight: 700; font-size: 44px; line-height: 1.25;
+      max-width: 800px; margin: 0 auto 24px;
+      letter-spacing: -0.5px;
     }
-    .hero p {
-      font-size: 20px; color: #666; max-width: 600px; margin: 24px auto 0;
-      line-height: 1.7;
+    @media (max-width: 700px) { .hero h1 { font-size: 28px; } }
+    .hero p { font-size: 18px; color: #ccc; max-width: 650px; margin: 0 auto 40px; line-height: 1.7; }
+    .hero-btn {
+      display: inline-block;
+      padding: 16px 48px;
+      background: #ffbf2f;
+      color: #1a1a1a;
+      font-weight: 700;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
     }
-    @media (max-width: 1000px) {
-      .hero { padding-top: 120px; min-height: 60vh; }
-      .hero h1 { font-size: 32px; }
-      .hero p { font-size: 16px; }
+    .hero-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,191,47,0.3); }
+
+    /* ADVANTAGES */
+    .advantages { background: #fff; padding: 80px 55px; }
+    @media (max-width: 1000px) { .advantages { padding: 60px 20px; } }
+    .adv-title { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 48px; color: #1a1a1a; }
+    .adv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 900px) { .adv-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .adv-grid { grid-template-columns: 1fr; } }
+    .adv-item { text-align: center; padding: 24px 16px; border: 1px solid #eee; border-radius: 8px; transition: all 0.3s; }
+    .adv-item:hover { border-color: #ffbf2f; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .adv-icon { font-size: 40px; margin-bottom: 16px; }
+    .adv-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #1a1a1a; }
+    .adv-item p { font-size: 14px; color: #777; line-height: 1.6; }
+
+    /* PRODUCTS SECTION */
+    .products-section { background: #f7f7f7; padding: 80px 55px; }
+    @media (max-width: 1000px) { .products-section { padding: 60px 20px; } }
+    .products-wrapper { max-width: 1200px; margin: 0 auto; }
+    .products-heading { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 48px; color: #1a1a1a; }
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 900px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .products-grid { grid-template-columns: 1fr; } }
+    .product-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 24px;
+      transition: all 0.3s;
+      position: relative;
     }
+    .product-card:hover { border-color: #ffbf2f; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .product-card.selected { border-color: #ffbf2f; background: #fffef9; }
+    .product-card input[type="checkbox"] {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 20px; height: 20px;
+      cursor: pointer;
+    }
+    .product-name { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+    .product-code { font-size: 13px; color: #888; margin-bottom: 12px; }
+    .product-price { font-size: 20px; font-weight: 700; color: #ffbf2f; }
+    .product-description { font-size: 14px; color: #666; margin-top: 12px; line-height: 1.6; }
+
+    /* CART SECTION */
+    .cart-section { background: #fff; padding: 60px 55px; }
+    @media (max-width: 1000px) { .cart-section { padding: 40px 20px; } }
+    .cart-wrapper { max-width: 1000px; margin: 0 auto; }
+    .cart-heading { font-size: 28px; font-weight: 700; text-align: center; margin-bottom: 32px; color: #1a1a1a; }
+    .cart-list { margin-bottom: 24px; }
+    .cart-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
+    .cart-item-name { flex: 1; font-size: 16px; color: #1a1a1a; }
+    .cart-item-price { font-size: 16px; font-weight: 700; color: #ffbf2f; margin-right: 16px; }
+    .cart-item-remove { background: #eee; border: none; color: #888; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; font-size: 14px; }
+    .cart-item-remove:hover { background: #ffbf2f; color: #1a1a1a; }
+    .cart-total { text-align: right; font-size: 20px; font-weight: 700; color: #1a1a1a; margin-top: 24px; }
+    .cart-empty { text-align: center; color: #888; font-size: 16px; margin-top: 24px; }
 
     /* FORM SECTION */
-    .form-section { background: #f5f5f5; padding: 100px 0; }
-    .form-container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-    .form-title {
-      font-family: "Raleway", "Cera", sans-serif;
-      font-weight: 700; font-size: 36px; color: #000;
-      text-align: center; margin-bottom: 16px;
+    .form-section { background: #f7f7f7; padding: 80px 55px; }
+    @media (max-width: 1000px) { .form-section { padding: 60px 20px; } }
+    .form-wrapper { max-width: 1000px; margin: 0 auto; }
+    .form-heading { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 12px; color: #1a1a1a; }
+    .form-subheading { font-size: 16px; color: #777; text-align: center; margin-bottom: 40px; }
+
+    /* TABS */
+    .form-tabs { display: flex; border-bottom: 2px solid #e0e0e0; margin-bottom: 32px; }
+    .form-tab {
+      padding: 14px 28px;
+      font-weight: 600;
+      font-size: 15px;
+      color: #888;
+      cursor: pointer;
+      border: none;
+      background: none;
+      position: relative;
+      transition: all 0.3s;
     }
-    .form-subtitle {
-      font-size: 18px; color: #666; text-align: center;
-      margin-bottom: 48px;
+    .form-tab:hover { color: #1a1a1a; }
+    .form-tab.active { color: #1a1a1a; }
+    .form-tab.active::after {
+      content: "";
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 3px;
+      background: #ffbf2f;
     }
 
+    /* TAB CONTENT */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
     /* FORM GRID */
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 32px;
-    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .form-grid .full-width { grid-column: 1 / -1; }
-    @media (max-width: 700px) {
-      .form-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 700px) { .form-grid { grid-template-columns: 1fr; } }
 
     .form-group { display: flex; flex-direction: column; }
     .form-group label {
-      font-size: 14px; color: #333; margin-bottom: 6px; font-weight: 500;
+      font-size: 13px; font-weight: 600; color: #555;
+      margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;
     }
     .form-group input,
     .form-group textarea,
     .form-group select {
-      padding: 14px 16px;
-      font-family: "Raleway", "Cera", sans-serif;
+      padding: 13px 16px;
+      font-family: "Raleway", sans-serif;
       font-size: 15px;
       border: 2px solid #e0e0e0;
-      border-radius: 4px;
+      border-radius: 6px;
       background: #fff;
       outline: none;
       transition: border-color 0.3s;
-      color: #111;
+      color: #1a1a1a;
     }
     .form-group input:focus,
     .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: #000;
-    }
-    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-group select:focus { border-color: #ffbf2f; }
+    .form-group textarea { min-height: 90px; resize: vertical; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #bbb; }
 
-    /* SUBMIT BUTTON */
+    .form-divider { grid-column: 1 / -1; height: 1px; background: #e0e0e0; margin: 12px 0; }
+    .form-section-title {
+      grid-column: 1 / -1;
+      font-size: 18px; font-weight: 700; color: #1a1a1a;
+      padding-bottom: 8px; border-bottom: 2px solid #ffbf2f;
+      margin-bottom: 8px;
+    }
+
+    /* SUBMIT */
     .submit-btn {
       display: block;
       width: 100%;
-      padding: 18px 32px;
-      background: #000;
-      color: #fff;
-      font-family: "Raleway", "Cera", sans-serif;
+      padding: 20px 32px;
+      background: #ffbf2f;
+      color: #1a1a1a;
+      font-family: "Raleway", sans-serif;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 17px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      border: 2px solid #000;
-      border-radius: 4px;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
       transition: all 0.3s ease;
-    }
-    .submit-btn:hover {
-      background: #fff;
-      color: #000;
-    }
-    .submit-btn:active {
-      transform: scale(0.98);
-    }
-
-    /* PRIVACY */
-    .privacy-note {
-      text-align: center;
-      font-size: 13px;
-      color: #999;
       margin-top: 24px;
     }
-    .privacy-note a { color: #666; text-decoration: underline; }
-    .privacy-note a:hover { color: #000; }
+    .submit-btn:hover { background: #1a1a1a; color: #ffbf2f; }
+    .submit-btn:active { transform: scale(0.98); }
+
+    .privacy-note {
+      text-align: center; font-size: 12px; color: #999; margin-top: 20px;
+    }
+    .privacy-note a { color: #777; text-decoration: underline; }
+    .privacy-note a:hover { color: #1a1a1a; }
 
     /* FOOTER */
     .footer {
-      background: #000; color: #999; padding: 40px 0;
-      text-align: center; font-size: 14px;
+      background: #1a1a1a; color: #888; padding: 36px 55px;
+      text-align: center; font-size: 13px;
     }
+    @media (max-width: 1000px) { .footer { padding: 28px 20px; } }
     .footer a { color: #ccc; }
-    .footer a:hover { color: #fff; }
+    .footer a:hover { color: #ffbf2f; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; flex-wrap: wrap; }
   </style>
 </head>
 <body>
 
 <!-- HEADER -->
 <header class="main-header">
-  <div class="logo-text">Лемана ПРО</div>
-  <nav>
-    <ul class="nav-menu">
-      <li><a href="#about">О нас</a></li>
-      <li><a href="#services">Услуги</a></li>
-      <li><a href="#contact">Контакты</a></li>
-    </ul>
-  </nav>
+  <div class="logo-wrapper">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 803.1174927" enable-background="new 0 0 1000 803.1174927" xml:space="preserve" style="height:48px;width:auto;">
+      <path fill="#FFBF2F" d="M512.2474976,650.5672607h-73.7616577l48.9681091,48.2537231h24.7935486 c6.9848633,0,12.6640015,5.6820679,12.6640015,12.6640625s-5.6820679,12.6553955-12.6640015,12.6553955H487.453949v-25.319458 h-48.1594849v96.623291h48.1594849v-23.1414185h24.7935486c33.5447998,0,60.8293457-27.2830811,60.8293457-60.8178101 C573.0768433,677.9517822,545.7922974,650.5672607,512.2474976,650.5672607z M663.9716797,647.3341675 c-42.9440308,0-77.8916626,34.9476929-77.8916626,77.8916626c0,42.9440918,34.9476318,77.8916626,77.8916626,77.8916626 c42.9425659,0,77.8916626-34.9475708,77.8916626-77.8916626 C741.8633423,682.2818604,706.9142456,647.3341675,663.9716797,647.3341675z M663.9716797,754.9522095 c-16.4159546,0-29.7277832-13.3582153-29.7277832-29.7263794c0-16.368042,13.3118286-29.7263184,29.7277832-29.7263184 c16.4145508,0,29.7263794,13.3582764,29.7263794,29.7263184 C693.6980591,741.5939941,680.3862305,754.9522095,663.9716797,754.9522095z M413.6097717,650.5672607v144.8770142h-48.1232605 V691.1419678h-49.2709961v104.3023071h-48.123291V650.5672607H413.6097717z"/>
+      <path fill="#20282B" d="M838.5838013,462.1984253v144.8828125h-49.9636841V553.046936h-47.9406738v54.0343018h-49.9927368 V462.1984253h49.9927368v49.9332275h47.9406738v-49.9332275H838.5838013z M28.6160183,462.1868286l-1.8960648,57.1152344 c-0.2625828,9.1310425-0.8751392,17.4738159-1.8085346,24.7948608c-0.9335403,7.1472168-2.6254196,12.8641357-5.0756378,17.0057373 c-3.0337887,5.1054077-8.0801554,6.7385254-15.4310989,5.1633301L0,565.3327637v41.3630371l1.2543819,0.3216553 c3.850384,0.9622803,7.5549822,1.6331787,10.9971409,2.0708618c3.4128885,0.4086304,6.7091169,0.6129761,9.7429094,0.6129761 c10.0344753,0,18.4063396-2.3041382,24.8237476-6.7965088c6.3884163-4.4923706,11.3765259-10.1802368,14.8769417-18.4940186 c3.4420166-8.1674194,5.8923798-18.0273438,7.3216705-29.3162231c1.4292908-11.2019043,2.3628387-23.8326416,2.7712097-37.5126343 l0.4375-14.9653625h29.3744888v104.4299011h50.3474426V462.1868286H28.6160183z M223.9222107,567.8702393v-16.5623169h67.6085205 v-35.4070435h-67.6085205v-14.5378113h75.9005432v-39.1646423H173.8570862v144.8364258h128.5973206v-39.1646118H223.9222107z M457.088562,462.1954956l-43.2642822,48.4928284l-43.2657471-48.4928284h-52.7866516v144.8538818h50.0332642v-68.5446777h0.3260498 l0.140564,0.140564l45.4119263,44.5714111l45.9727783-45.1785889l0.0463867,0.0941772v0.6057739l0.1405029,68.3113403h49.9854736 V462.1954956H457.088562z M855.3619995,530.6647949v76.3845825h47.6523438v-76.3845825 c0-13.3959351,11.1554565-24.3166504,24.5499878-24.3166504c13.3944702,0,24.3630371,10.9207153,24.3630371,24.3166504v28.3757324 h-48.3522339l47.3247681,48.0088501H1000v-76.3845825c0-39.9051514-32.5305176-72.342865-72.4356689-72.342865 C887.7055054,458.3219299,855.3619995,490.7596436,855.3619995,530.6647949z M599.0658569,458.3219299 c-39.9036865,0-72.4356689,32.4377136-72.4356689,72.342865v76.3845825h49.1000366l47.3262939-48.0088501h-48.3536987v-28.3757324 c0-13.3959351,10.9221802-24.3166504,24.3630371-24.3166504c13.4422607,0,24.5499878,10.9207153,24.5499878,24.3166504v76.3845825 h47.6523438v-76.3845825C671.2681885,490.7596436,638.9246216,458.3219299,599.0658569,458.3219299z"/>
+      <path fill="#C5861E" d="M574.2202148,73.4514847l-60.4960938,87.1141739l54.7313843,54.0691376v84.5374451H451.1209717 l-19.6881409,90.4920044h242.4206238v-217.699585L574.2202148,73.4514847z"/>
+      <path fill="#855D12" d="M431.4328308,299.1534119v90.4920044l19.6925049-90.4920044H431.4328308z"/>
+      <path fill="#855D12" d="M499.9427185,146.8944092L574.21875,73.4514847l-60.5177612,87.0460739L499.9427185,146.8944092z"/>
+      <path fill="#FFBF2F" d="M499.968811,0L326.0581055,171.9559631v217.6966858h105.4008179V299.160675v-84.5389099 l68.5098877-67.7404022l74.2745972-73.439003L499.968811,0z"/>
+    </svg>
+    <span class="logo-text">Лемана ПРО</span>
+  </div>
+  <div class="header-contact">
+    <div class="header-phone"><a href="tel:+78005553535">8 (800) 555-35-35</a></div>
+    <div class="header-subtext">Бесплатный звонок по России</div>
+  </div>
 </header>
 
 <!-- HERO -->
-<section class="section hero" id="about">
-  <div>
-    <h1>Заказывайте товары и услуги Лемана ПРО</h1>
-    <p>Мы предлагаем решения для бизнеса: от проектирования до поставки и установки.</p>
-  </div>
+<section class="hero">
+  <h1>Регистрация B2B-клиента</h1>
+  <p>Заполните форму — мы свяжемся с вами для оформления сотрудничества. Специальные условия для юрлиц и ИП.</p>
+  <a href="#products" class="hero-btn">Каталог продуктов</a>
 </section>
 
-<!-- УСЛУГИ -->
-<section class="section section--white" id="services">
-  <div class="form-container">
-    <div class="form-title">Наши услуги</div>
-    <div class="form-subtitle">Специализируемся на поставках строительных материалов и инструментов</div>
-    <div class="form-grid">
-      <div class="form-group">
-        <h3 style="font-size: 22px; margin-bottom: 12px; color: #000;">Проектирование</h3>
-        <p style="color: #666; line-height: 1.6;">Разрабатываем проекты любой сложности с учетом требований заказчика.</p>
-      </div>
-      <div class="form-group">
-        <h3 style="font-size: 22px; margin-bottom: 12px; color: #000;">Поставка</h3>
-        <p style="color: #666; line-height: 1.6;">Оперативная доставка материалов на ваш объект.</p>
-      </div>
-      <div class="form-group">
-        <h3 style="font-size: 22px; margin-bottom: 12px; color: #000;">Монтаж</h3>
-        <p style="color: #666; line-height: 1.6;">Профессиональный монтаж и установка оборудования.</p>
-      </div>
-      <div class="form-group">
-        <h3 style="font-size: 22px; margin-bottom: 12px; color: #000;">Консультации</h3>
-        <p style="color: #666; line-height: 1.6;">Поможем подобрать оптимальные решения под ваш проект.</p>
-      </div>
+<!-- ADVANTAGES -->
+<section class="advantages">
+  <h2 class="adv-title">Почему выбирают Лемана ПРО для бизнеса</h2>
+  <div class="adv-grid">
+    <div class="adv-item">
+      <div class="adv-icon">🏗️</div>
+      <h3>Широкий ассортимент</h3>
+      <p>Более 30 000 товаров для строительства и ремонта</p>
+    </div>
+    <div class="adv-item">
+      <div class="adv-icon">🚚</div>
+      <h3>Быстрая доставка</h3>
+      <p>Доставка по всей России в срок</p>
+    </div>
+    <div class="adv-item">
+      <div class="adv-icon">💳</div>
+      <h3>Удобная оплата</h3>
+      <p>Безналичный расчёт, отсрочка платежа</p>
+    </div>
+    <div class="adv-item">
+      <div class="adv-icon">🤝</div>
+      <h3>Персональный менеджер</h3>
+      <p>Индивидуальный подход к каждому клиенту</p>
     </div>
   </div>
 </section>
 
-<!-- ФОРМА -->
-<section class="section form-section" id="contact">
-  <div class="form-container">
-    <div class="form-title">Оставьте заявку</div>
-    <div class="form-subtitle">Мы свяжемся с вами в течение 15 минут</div>
+<!-- PRODUCTS SECTION -->
+<section class="products-section" id="products">
+  <div class="products-wrapper">
+    <h2 class="products-heading">Каталог продуктов</h2>
+    <div class="products-grid" id="products-container">
+      <!-- Products will be rendered here -->
+    </div>
+  </div>
+</section>
+
+<!-- CART SECTION -->
+<section class="cart-section">
+  <div class="cart-wrapper">
+    <h2 class="cart-heading">Ваша корзина</h2>
+    <div class="cart-list" id="cart-list">
+      <div class="cart-empty">Корзина пуста</div>
+    </div>
+    <div class="cart-total" id="cart-total">Итого: 0 ₽</div>
+  </div>
+</section>
+
+    <!-- FORM -->
+<section class="form-section" id="form">
+  <div class="form-wrapper">
+    <h2 class="form-heading">Регистрация B2B-клиента</h2>
+    <p class="form-subheading">Заполните форму, и мы подготовим для вас индивидуальное предложение</p>
 
     <form class="form-inline" name="landingForm" onSubmit="createObject(); return false">
       <div class="form-grid">
-        <div class="form-group full-width">
-          <label for="form-name">Ваше имя *</label>
-          <input type="text" id="form-name" name="name" placeholder="Иван Иванов" required>
+
+        <div class="form-group">
+          <label for="form-fio">ФИО / ИП *</label>
+          <input type="text" id="form-fio" name="fio" placeholder="Иванов Иван Иванович" required>
         </div>
 
         <div class="form-group">
-          <label for="form-email">Email *</label>
-          <input type="email" id="form-email" name="email" placeholder="ivan@company.ru" required>
+          <label for="form-company-name">Название организации *</label>
+          <input type="text" id="form-company-name" name="company-name" placeholder='ООО «Название компании»' required>
         </div>
 
         <div class="form-group">
-          <label for="form-phone">Телефон</label>
-          <input type="tel" id="form-phone" name="phone" placeholder="+7 (900) 123-45-67">
-        </div>
-
-        <div class="form-group">
-          <label for="form-company">Компания</label>
-          <input type="text" id="form-company" name="company" placeholder="ООО «Ваша компания»">
+          <label for="form-inn">ИНН *</label>
+          <input type="text" id="form-inn" name="inn" placeholder="1234567890" maxlength="12" required>
         </div>
 
         <div class="form-group">
           <label for="form-position">Должность</label>
-          <input type="text" id="form-position" name="position" placeholder="Менеджер проектов">
+          <input type="text" id="form-position" name="position" placeholder="Генеральный директор">
         </div>
 
         <div class="form-group">
-          <label for="form-industry">Отрасль</label>
-          <select id="form-industry" name="industry">
-            <option value="">Выберите отрасль</option>
-            <option value="Строительство">Строительство</option>
-            <option value="Производство">Производство</option>
-            <option value="Торговля">Торговля</option>
-            <option value="IT">IT</option>
-            <option value="Финансы">Финансы</option>
-            <option value="Другое">Другое</option>
-          </select>
+          <label for="form-phone">Телефон *</label>
+          <input type="tel" id="form-phone" name="phone" placeholder="+7 (900) 123-45-67" required>
         </div>
 
         <div class="form-group">
-          <label for="form-city">Город</label>
-          <input type="text" id="form-city" name="city" placeholder="Москва">
+          <label for="form-email">Email *</label>
+          <input type="email" id="form-email" name="email" placeholder="ivanov@company.ru" required>
         </div>
 
-        <div class="form-group full-width">
-          <label for="form-commentary">Комментарий</label>
-          <textarea id="form-commentary" name="commentary" placeholder="Опишите ваш проект или задачу..."></textarea>
-        </div>
       </div>
 
       <button type="submit" class="submit-btn">Отправить заявку</button>
-
-      <div class="privacy-note">
-        Нажимая «Отправить заявку», вы даете согласие на обработку персональных данных в соответствии с
-        <a href="#" target="_blank">политикой конфиденциальности</a>.
-      </div>
     </form>
+    <div class="privacy-note">
+      Нажимая «Отправить заявку», вы даёте согласие на обработку персональных данных в соответствии с
+      <a href="#" target="_blank">политикой конфиденциальности</a>.
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="form-container">
-    <p>© 2026 Лемана ПРО. Все права защищены.</p>
-    <p style="margin-top: 8px;">
-      <a href="#">Политика конфиденциальности</a> |
-      <a href="#">Условия использования</a>
-    </p>
+  <div class="footer-links">
+    <a href="#">Политика конфиденциальности</a>
+    <a href="#">Условия использования</a>
+    <a href="#">Карта сайта</a>
   </div>
+  <p>© 2026 Лемана ПРО. Все права защищены.</p>
 </footer>
 
 <script>
-  function handleScrollAnimations() {
-    var elements = document.querySelectorAll('.form-group');
-    elements.forEach(function(el) {
-      var rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.85) el.classList.add('wpb_visible');
+  // PRODUCTS DATA - replace with real data from your stand
+  var products = [
+    {"id": "1", "name": "Цемент М500", "code": "CEM500", "price": 450, "description": "Портландцемент М500 для фундаментов и несущих конструкций"},
+    {"id": "2", "name": "Песок строительный", "code": "SAND", "price": 280, "description": "Мытый речной песок для кладки и штукатурки"},
+    {"id": "3", "name": "Щебень 5-20", "code": "STONE520", "price": 1200, "description": "Фракция 5-20 мм для бетонных работ"},
+    {"id": "4", "name": "Кирпич облицовочный", "code": "BRICK", "price": 35, "description": "Керамический облицовочный кирпич"},
+    {"id": "5", "name": "Гипсокартон KNAUF", "code": "GKLV", "price": 620, "description": "Лист 2500x1200x12.5 мм влагостойкий"},
+    {"id": "6", "name": "Штукатурка гипсовая", "code": "PLASTER", "price": 420, "description": "Сухая штукатурная смесь для внутренних работ"}
+  ];
+
+  // CART DATA
+  var cart = [];
+
+  // RENDER PRODUCTS
+  function renderProducts() {
+    var container = document.getElementById('products-container');
+    container.innerHTML = '';
+    products.forEach(function(prod) {
+      var card = document.createElement('div');
+      card.className = 'product-card';
+      card.id = 'prod-' + prod.id;
+      card.innerHTML = '<input type="checkbox" name="product-' + prod.id + '" value="' + prod.id + '"><div class="product-name">' + prod.name + '</div><div class="product-code">' + prod.code + '</div><div class="product-price">' + prod.price + ' ₽</div><div class="product-description">' + prod.description + '</div>';
+      container.appendChild(card);
+    });
+
+    // Add event listeners
+    document.querySelectorAll('.product-card input[type="checkbox"]').forEach(function(checkbox) {
+      checkbox.addEventListener('change', function() {
+        var prodId = this.value;
+        if (this.checked) {
+          addToCart(prodId);
+        } else {
+          removeFromCart(prodId);
+        }
+      });
     });
   }
-  window.addEventListener('scroll', handleScrollAnimations);
-  window.addEventListener('load', handleScrollAnimations);
-</script>
 
-</body>
-</html>
+  // ADD TO CART
+  function addToCart(prodId) {
+    var prod = products.find(function(p) { return p.id == prodId; });
+    if (prod && !cart.find(function(c) { return c.id == prodId; })) {
+      cart.push(prod);
+      document.getElementById('prod-' + prodId).classList.add('selected');
+    }
+    renderCart();
+  }
+
+  // REMOVE FROM CART
+  function removeFromCart(prodId) {
+    cart = cart.filter(function(c) { return c.id != prodId; });
+    var checkbox = document.querySelector('#prod-' + prodId + ' input[type="checkbox"]');
+    if (checkbox) checkbox.checked = false;
+    document.getElementById('prod-' + prodId).classList.remove('selected');
+    renderCart();
+  }
+
+  // RENDER CART
+  function renderCart() {
+    var cartList = document.getElementById('cart-list');
+    var cartTotal = document.getElementById('cart-total');
+
+    if (cart.length === 0) {
+      cartList.innerHTML = '<div class="cart-empty">Корзина пуста</div>';
+      cartTotal.textContent = 'Итого: 0 ₽';
+      return;
+    }
+
+    cartList.innerHTML = '';
+    var total = 0;
+    cart.forEach(function(item) {
+      total += item.price;
+      var itemEl = document.createElement('div');
+      itemEl.className = 'cart-item';
+      itemEl.innerHTML = '<div class="cart-item-name">' + item.name + '</div><div class="cart-item-price">' + item.price + ' ₽</div><button class="cart-item-remove" onclick="removeFromCart(\'' + item.id + '\')">x</button>';
+      cartList.appendChild(itemEl);
+    });
+
+    cartTotal.textContent = 'Итого: ' + total + ' ₽';
+  }
+
+  // INIT
+  jQuery(document).ready(function() {
+    renderProducts();
+
+    // TABS
+    document.querySelectorAll('.form-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.form-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+        this.classList.add('active');
+        document.getElementById(this.dataset.tab).classList.add('active');
+      });
+    });
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+</script>
